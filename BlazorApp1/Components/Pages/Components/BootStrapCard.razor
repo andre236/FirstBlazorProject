@@ -1,18 +1,61 @@
 ﻿@rendermode InteractiveServer
-<h3>BootStrapCard</h3>
-
 
 <div class="card" style="width: 18rem;">
-    <svg aria-label="Placeholder: Image cap" class="bd-placeholder-img card-img-top" height="180" preserveAspectRatio="xMidYMid slice" role="img" width="100%" xmlns="http://www.w3.org/2000/svg"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+    @if(CardHeader != null)
+    {
+        <div class="card-header">
+           @CardHeader
+        </div>
+    }
+
+    @if(ChildContent != null || Title != null)
+    {
+        <svg aria-label="Placeholder: Image cap" class="bd-placeholder-img card-img-top" height="180" preserveAspectRatio="xMidYMid slice" role="img" width="100%" xmlns="http://www.w3.org/2000/svg"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+        
+    }
+
+
     <div class="card-body">
-        <h5 class="card-title">@Title</h5>
-        <p class="card-text">@Description</p>
-        <button class="btn btn-primary" @onclick="EventClick">@ButtonText</button>
+
+        @if(CardText != null)
+        {
+            @CardText
+        }
+        else if(ChildContent != null)
+        {
+            @ChildContent
+        }
+        else
+        {
+            <h5 class="card-title">@Title</h5>
+            <p class="card-text">@Description</p>
+            <button class="btn btn-primary" @onclick="EventClick">@ButtonText</button>
+        }
     </div>
-</div
+
+    @if (CardFooter != null)
+    {
+        <div class="card-footer text-body-secondary">
+            @CardFooter
+        </div>
+    }
+
+</div>
 
 
 @code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; } // NOME IMPORTANTE POIS É UM PADRÃO
+
+    [Parameter]
+    public RenderFragment CardHeader { get; set; }
+
+    [Parameter]
+    public RenderFragment CardText { get; set; }
+
+    [Parameter]
+    public RenderFragment CardFooter { get; set; }
+
     [Parameter]
     public string? Title { get; set; }
     [Parameter]

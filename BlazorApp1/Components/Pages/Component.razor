@@ -3,10 +3,36 @@
 @page "/component"
 
 <h3>Component</h3>
+<div class="row">
+	<div class="col-md-3">
+		<BootStrapCard EventClick="@((e) => EventClickCardOne(e))"
+					   title="Título do Cartão 1"
+					   Description="Este é um cartão"
+					   ButtonText="Comprar" />
+	</div>
+	<div class="col-md-3">
+		<BootStrapCard EventClick="EventClickCardTwo"
+					   title="Título do Cartão 2"
+					   Description="Este é um cartão"
+					   ButtonText="Comprar" />
+	</div>
+	<div class="col-md-3">
+		<BootStrapCard>
+			<CardHeader>
+				Cabeçalho
+			</CardHeader>
+			<CardText>
+				Conteúdo
+			</CardText>
+			<CardFooter>
+				Rodapé
+			</CardFooter>
+		</BootStrapCard>
+	</div>
+</div>
 
-<BootStrapCard EventClick="@((e) => EventClickCardOne(e))" title="Título do Cartão 1" Description="Este é um cartão" ButtonText="Comprar"/>
 
-<BootStrapCard EventClick="EventClickCardTwo" title="Título do Cartão 2" Description="Este é um cartão" ButtonText="Comprar"/>
+
 
 
 @code {
