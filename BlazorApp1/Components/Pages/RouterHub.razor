@@ -7,28 +7,45 @@
 
 @attribute [Route(RoutersConstants.RouterHub)]
 
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+
 <h3>RouterHub</h3>
 <div>
-	Todos:@All (QueryString: @Name - @NameTwo)
-	<br/>
 	Group: @Group
-	<br/>
+	<br />
 	Id: @Id
 	<br />
+	Todos:@All
+	<br />
+	(QueryString: @Name - @NameTwo)
+	<br />
+	<input class="form-control" @bind="Router" />
+	<br />
+	<button class="btn btn-primary" @onclick="OnClick">Navigate</button>
 </div>
 
 
 @code {
+
+	public string? Router { get; set; }
+
 	[Parameter]
 	public string? All { get; set; }
 	[Parameter]
-	public string? Group { get; set; }	
+	public string? Group { get; set; }
 	[Parameter]
 	public int? Id { get; set; }
 
 	[SupplyParameterFromQuery]
 	public string? Name { get; set; }
 
-	[SupplyParameterFromQuery(Name="dono")]
+	[SupplyParameterFromQuery(Name = "dono")]
 	public string? NameTwo { get; set; }
+
+	public void OnClick()
+	{
+		if (string.IsNullOrWhiteSpace(Router))
+			Navigation.NavigateTo(Router);
+	}
 }
