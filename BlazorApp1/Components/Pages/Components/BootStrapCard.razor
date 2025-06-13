@@ -3,9 +3,7 @@
 <div class="card" style="width: 18rem;">
     @if(CardHeader != null)
     {
-        <div class="card-header">
-           @CardHeader
-        </div>
+        <BootStrapCardHeader CardHeader="CardHeader"></BootStrapCardHeader>
     }
 
     @if(ChildContent != null || Title != null)

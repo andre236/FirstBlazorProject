@@ -10,26 +10,32 @@
 					   Description="Este é um cartão"
 					   ButtonText="Comprar" />
 	</div>
+
 	<div class="col-md-3">
 		<BootStrapCard EventClick="EventClickCardTwo"
 					   title="Título do Cartão 2"
 					   Description="Este é um cartão"
 					   ButtonText="Comprar" />
 	</div>
+
 	<div class="col-md-3">
-		<BootStrapCard>
-			<CardHeader>
-				Cabeçalho
-			</CardHeader>
-			<CardText>
-				Conteúdo
-			</CardText>
-			<CardFooter>
-				Rodapé
-			</CardFooter>
-		</BootStrapCard>
+		<CascadingValue Name="CardHeaderButtonText" Value="@("Cadastrar")">
+			<BootStrapCard>
+				<CardHeader>
+					Cabeçalho
+				</CardHeader>
+				<CardText>
+					Conteúdo
+				</CardText>
+				<CardFooter>
+					Rodapé
+				</CardFooter>
+			</BootStrapCard>
+		</CascadingValue>
 	</div>
+
 </div>
+
 <div class="row">
 	<div class="col-md-3">
 		<InputString PlaceHolder="Digite seu Texto" class="form-control" maxlength="5" autocomplete="off"/>
@@ -40,7 +46,7 @@
 
 
 @code {
-
+	private string ButtonText = "Cadastrar";
 	public void EventClickCardOne(MouseEventArgs args)
 	{
 		JS.InvokeVoidAsync("alert", "Card 1" + args.ScreenY);
