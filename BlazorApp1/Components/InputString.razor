@@ -1,0 +1,9 @@
+﻿<input @attributes="Attibutes" placeholder="@PlaceHolder">
+
+@code {
+	[Parameter(CaptureUnmatchedValues = true)]
+	public Dictionary<string, object> Attibutes { get; set; }
+
+	[Parameter]
+	public string? PlaceHolder { get; set; }
+}
