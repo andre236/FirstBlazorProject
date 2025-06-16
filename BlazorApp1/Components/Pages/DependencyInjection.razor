@@ -1,0 +1,27 @@
+﻿@page "/dependencyInjection"
+@inject RandomNumber NumberOne
+@inject RandomNumber NumberTwo
+@inject IMensagem MensagemSimples
+
+<h3>DependencyInjection</h3>
+<div class="row">
+	<div class="col-6">
+		Valor 1: @NumberOne.NumberIndentify
+	</div>
+	<div class="col-6">
+		Valor 2: @NumberTwo.NumberIndentify
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-4">
+		Mensagem SMS Enviada? @MensagemSimples.Enviar("SMS")
+	</div>
+	<div class="col-4">
+		Mensagem Email? Enviada? @MensagemChaveada.Enviar("SMS")
+	</div>
+</div>
+
+@code {
+
+}

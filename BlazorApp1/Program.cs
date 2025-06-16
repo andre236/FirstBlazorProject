@@ -1,10 +1,25 @@
 using BlazorApp1.Components;
+using BlazorApp1.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+//Transicent Resumo : Uma instancia para cada necessidade de injeção
+//builder.Services.AddTransient<RandomNumber>(); // Resumo : 
+
+//AddScoped Resumo : Uma instancia para cada requisição HTTP (escopo) é a requisição
+//builder.Services.AddScoped<RandomNumber>(); // Se comporta como singleton porém a ação é por cada client
+
+//AddSingleton : Uma instancia para a aplicação inteira.
+//builder.Services.AddSingleton<RandomNumber>();
+builder.Services.AddSingleton<RandomNumber>();
+builder.Services.AddSingleton<IMensagem, MensagemEmail>();
+
+builder.Services.AddKeyedSingleton<IMensagem, MensagemWhatsApp>("whatsapp"); 
 
 var app = builder.Build();
 
