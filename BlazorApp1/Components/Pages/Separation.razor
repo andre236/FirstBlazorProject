@@ -1,0 +1,21 @@
+﻿@page "/separation"
+@rendermode InteractiveServer
+
+<h3>Separation</h3>
+
+<div>
+	<p>HTML> eu sou o <strong>HTML</strong></p>
+</div>
+<div>
+	<p>C#: @DateTime.Now - @Text</p>
+</div>
+<div>
+	<button class="btn btn-success" @onclick="CarregarJS">CarregarJS</button>
+	<button class="btn btn-primary" onclick="javascirpt:alert('Clicou no botão JS inline');">
+		Botão JS
+	</button>
+	<button class="btn btn-primary" onclick="ShowMessage()">
+		Botão JS
+	</button>
+</div>
+

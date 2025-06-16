@@ -1,0 +1,12 @@
+﻿/*
+    CSS Isolation: Separação de CSS 
+    que será aplicado apenas ao component
+*/
+
+
+/*
+    nav-item somente aplicado ao component separation
+*/
+.nav-item{
+    font-size: 35px !important;
+}
