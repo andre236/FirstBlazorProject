@@ -9,17 +9,20 @@
 	</div>
 }
 
-<EditForm Model="@User" OnSubmit="Acessar" FormName="login">
+<EditForm Model="User" OnSubmit="Acessar" FormName="login">
 	<DataAnnotationsValidator/>
 	<ValidationSummary/>
 	<div class="row">
 		<div class="col-12">
 			<label for="email">E-mail</label>
-			<input id="email" @bind="User.Email" class="form-control"/>
+			<InputText id="email" @bind-Value="User.Email" class="form-control"/>
+			<ValidationMessage For="()=> User.Email"/>
 		</div>
 		<div class="col-12">
 			<label for="senha">Senha</label>
-			<input id="senha" @bind="User.Password" class="form-control"/>
+			<InputText type="password" id="senha" @bind-Value="User.Password" class="form-control" />
+			<ValidationMessage For="() => User.Password" />
+
 		</div>
 		<div class="col-12 mt-3">
 			<button type="submit" class="btn btn-outline-primary">Acessar</button>
