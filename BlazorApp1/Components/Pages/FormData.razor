@@ -9,7 +9,15 @@
 	</div>
 }
 
-<EditForm Model="User" OnSubmit="Acessar" FormName="login">
+@if (MensagemError is not null)
+{
+	<div class="alert alert-danger">
+		@MensagemError
+	</div>
+}
+
+@*OnSubmit="Acessar" não precisa usar OnSubmit com os outros OnValid e OnInvalid, pois são excludente*@
+<EditForm Model="User" OnInvalidSubmit="ValidacaoError" OnValidSubmit="EnviarDadosComValidacaoSucesso" FormName="login">
 	<DataAnnotationsValidator/>
 	<ValidationSummary/>
 	<div class="row">
@@ -32,6 +40,7 @@
 
 @code {
 	public string? Mensagem { get; set; }
+	public string? MensagemError { get; set; }
 	public User User { get; set; } = new User();
 
 	public void Acessar(EditContext context)
@@ -45,5 +54,17 @@
 
 		//TODO - Consultar DB | Consultar API
 		//Mensagem = $"Email: {User.Email} - Senha: {User.Password}";
+	}
+
+	public void EnviarDadosComValidacaoSucesso(EditContext context)
+	{
+		Mensagem = $"Dados enviados com sucesso! Validação: OK!";
+
+	}
+
+	public void ValidacaoError()
+	{
+		MensagemError = $"Validacao com erro";
+
 	}
 }
