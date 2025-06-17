@@ -1,0 +1,40 @@
+﻿@page "/form/data"
+@rendermode InteractiveServer
+<h3>FormData</h3>
+
+@if (Mensagem is not null)
+{
+	<div class="alert alert-info">
+		@Mensagem
+	</div>
+}
+
+
+<div class="row">
+	<div class="col-12">
+		<label for="email">E-mail</label>
+		<input id="email" @bind="Email" />
+	</div>
+	<div class="col-12">
+		<label for="senha">Senha</label>
+		<input id="senha" @bind="Senha" />
+	</div>
+	<div class="col-12 mt-3">
+		<button @onclick="Acessar" class="btn btn-primary">Acessar</button>
+	</div>
+</div>
+
+
+@code {
+	public string? Mensagem { get; set; }
+	public string? Email { get; set; }
+	public string? Senha { get; set; }
+	public void Acessar()
+	{
+		//TODO - Validar
+
+		//TODO - Consultar DB | Consultar API
+		
+		Mensagem = $"Email: {Email} - Senha: {Senha}";
+	}
+}
