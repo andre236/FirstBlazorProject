@@ -9,32 +9,38 @@
 	</div>
 }
 
-
-<div class="row">
-	<div class="col-12">
-		<label for="email">E-mail</label>
-		<input id="email" @bind="Email" />
+<EditForm Model="@User" OnSubmit="Acessar" FormName="login">
+	<DataAnnotationsValidator/>
+	<ValidationSummary/>
+	<div class="row">
+		<div class="col-12">
+			<label for="email">E-mail</label>
+			<input id="email" @bind="User.Email" class="form-control"/>
+		</div>
+		<div class="col-12">
+			<label for="senha">Senha</label>
+			<input id="senha" @bind="User.Password" class="form-control"/>
+		</div>
+		<div class="col-12 mt-3">
+			<button type="submit" class="btn btn-outline-primary">Acessar</button>
+		</div>
 	</div>
-	<div class="col-12">
-		<label for="senha">Senha</label>
-		<input id="senha" @bind="Senha" />
-	</div>
-	<div class="col-12 mt-3">
-		<button @onclick="Acessar" class="btn btn-primary">Acessar</button>
-	</div>
-</div>
-
+</EditForm>
 
 @code {
 	public string? Mensagem { get; set; }
-	public string? Email { get; set; }
-	public string? Senha { get; set; }
-	public void Acessar()
+	public User User { get; set; } = new User();
+
+	public void Acessar(EditContext context)
 	{
 		//TODO - Validar
+		if (context.Validate())
+		{
+			Mensagem = $"Acessando ... Email: {User.Email} - Senha: {User.Password}";
+
+		}
 
 		//TODO - Consultar DB | Consultar API
-		
-		Mensagem = $"Email: {Email} - Senha: {Senha}";
+		//Mensagem = $"Email: {User.Email} - Senha: {User.Password}";
 	}
 }
